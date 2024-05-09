@@ -22,6 +22,10 @@ document.addEventListener("keydown", (event) => {
     handleBackspaceKey();
   }
 
+  else if (key === "C") {
+    handleCkey();
+  }
+
   
   else if (key === "Escape") {
     handleClearKey();
@@ -73,11 +77,13 @@ function handleBackspaceKey() {
   }
 }
 
+
+function handleCkey() {
+  historial = [];
+  actualizarHistorial();
+}
+
 function handleClearKey() {
   pantalla.textContent = "0";
 }
 
-function limpiarHistorial() {
-  historial = [];
-  actualizarHistorial();
-}
