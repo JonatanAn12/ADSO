@@ -2,32 +2,35 @@ const pantalla = document.querySelector(".pantalla");
 const botones = document.querySelectorAll(".btn");
 let historial = [];
 
+const changeColor = (event, color) => {
+  botones.forEach((boton) => {
+    if (event.key == boton.value) {
+      boton.style.backgroundColor = `#${color}`
+    }
+  })
+};
+
+document.addEventListener('keydown', (event) => {
+  changeColor(event, 'a82880')
+})
+
+document.addEventListener('keyup', (event) => {
+  changeColor(event, '4c4d4d')
+})
 
 document.addEventListener("keydown", (event) => {
   const key = event.key;
-
   if (/\d/.test(key)) {
     handleNumericKey(key);
-  }
-
-  else if (/[\+\-\*\/]/.test(key)) {
+  } else if (/[\+\-\*\/\.]/.test(key)) {
     handleOperatorKey(key);
-  }
-  
-  else if (key === "Enter") {
+  } else if (key === "Enter") {
     handleEqualKey();
-  }
-
-  else if (key === "Backspace") {
+  } else if (key === "Backspace") {
     handleBackspaceKey();
-  }
-
-  else if (key === "C") {
+  } else if (key === "c") {
     handleCkey();
-  }
-
-  
-  else if (key === "Escape") {
+  } else if (key === "Escape") {
     handleClearKey();
   }
 });
