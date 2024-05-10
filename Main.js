@@ -3,7 +3,7 @@ const botones = document.querySelectorAll(".btn");
 const buttonInfo = document.querySelector("#buttonInfo");
 let historial = [];
 
-//? Cambio de colores en teclas
+//* Cambio de colores en teclas
 const changeColor = (event, color) => {
   botones.forEach((boton) => {
     if (event.key == boton.value) {
@@ -20,7 +20,7 @@ document.addEventListener('keyup', (event) => {
   changeColor(event, '4c4d4d')
 })
 
-//?? Función para escribir con teclado
+//* Función para escribir con teclado
 document.addEventListener("keydown", (event) => {
   const key = event.key;
   if (/\d/.test(key)) {
@@ -40,7 +40,7 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
-//? Actualizar historial
+//* Actualizar historial
 function actualizarHistorial() {
   const historialElemento = document.querySelector(".historial");
   historialElemento.innerHTML = "";
@@ -51,7 +51,7 @@ function actualizarHistorial() {
   }
 }
 
-//? Poner numeros del 0 al 9 en la pantalla
+//* Poner numeros del 0 al 9 en la pantalla
 function handleNumericKey(key) {
   if (pantalla.textContent === "0" || pantalla.textContent === "Error!") {
     pantalla.textContent = key;
@@ -60,7 +60,7 @@ function handleNumericKey(key) {
   }
 }
 
-//? Funciones de suma, resta, multiplicación, división y punto decimal
+//* Funciones de suma, resta, multiplicación, división y punto decimal
 function handleOperatorKey(key) {
   const lastChar = pantalla.textContent.slice(-1);
   if (/[\+\-\*\/]/.test(lastChar)) return;
@@ -68,7 +68,7 @@ function handleOperatorKey(key) {
   pantalla.textContent += key;
 }
 
-//? Función igual
+//* Función igual
 function handleEqualKey() {
   try {
     const operacion = pantalla.textContent;
@@ -81,7 +81,7 @@ function handleEqualKey() {
   }
 }
 
-//? Función borrar numero
+//* Función borrar numero
 function handleBackspaceKey() {
   if (pantalla.textContent.length === 1 || pantalla.textContent === "Error!") {
     pantalla.textContent = "0";
@@ -90,18 +90,18 @@ function handleBackspaceKey() {
   }
 }
 
-//? Función limpiar historial
+//* Función limpiar historial
 function handleCkey() {
   historial = [];
   actualizarHistorial();
 }
 
-//? Función Escape
+//* Función Escape
 function handleClearKey() {
   pantalla.textContent = "0";
 }
 
-//? función mouse
+//* función mouse
 botones.forEach(boton => {
   boton.addEventListener("click", () => {
     const valorBoton = boton.textContent;
@@ -121,7 +121,7 @@ botones.forEach(boton => {
   });
 });
 
-//? Alerta function
+//* Alerta function
 buttonInfo.addEventListener("click", () => {
   alerta()
 });
