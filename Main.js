@@ -1,7 +1,9 @@
 const pantalla = document.querySelector(".pantalla");
 const botones = document.querySelectorAll(".btn");
+const buttonInfo = document.querySelector("#buttonInfo");
 let historial = [];
 
+//? Cambio de colores en teclas
 const changeColor = (event, color) => {
   botones.forEach((boton) => {
     if (event.key == boton.value) {
@@ -18,6 +20,7 @@ document.addEventListener('keyup', (event) => {
   changeColor(event, '4c4d4d')
 })
 
+//?? Función para escribir con teclado
 document.addEventListener("keydown", (event) => {
   const key = event.key;
   if (/\d/.test(key)) {
@@ -32,10 +35,12 @@ document.addEventListener("keydown", (event) => {
     handleCkey();
   } else if (key === "Escape") {
     handleClearKey();
+  } else if (key === "i") {
+    alerta();
   }
 });
 
-
+//? Actualizar historial
 function actualizarHistorial() {
   const historialElemento = document.querySelector(".historial");
   historialElemento.innerHTML = "";
@@ -46,6 +51,7 @@ function actualizarHistorial() {
   }
 }
 
+//? Poner numeros del 0 al 9 en la pantalla
 function handleNumericKey(key) {
   if (pantalla.textContent === "0" || pantalla.textContent === "Error!") {
     pantalla.textContent = key;
@@ -54,6 +60,7 @@ function handleNumericKey(key) {
   }
 }
 
+//? Funciones de suma, resta, multiplicación, división y punto decimal
 function handleOperatorKey(key) {
   const lastChar = pantalla.textContent.slice(-1);
   if (/[\+\-\*\/]/.test(lastChar)) return;
@@ -61,6 +68,7 @@ function handleOperatorKey(key) {
   pantalla.textContent += key;
 }
 
+//? Función igual
 function handleEqualKey() {
   try {
     const operacion = pantalla.textContent;
@@ -73,6 +81,7 @@ function handleEqualKey() {
   }
 }
 
+//? Función borrar numero
 function handleBackspaceKey() {
   if (pantalla.textContent.length === 1 || pantalla.textContent === "Error!") {
     pantalla.textContent = "0";
@@ -81,17 +90,18 @@ function handleBackspaceKey() {
   }
 }
 
-
+//? Función limpiar historial
 function handleCkey() {
   historial = [];
   actualizarHistorial();
 }
 
+//? Función Escape
 function handleClearKey() {
   pantalla.textContent = "0";
-
 }
 
+//? función mouse
 botones.forEach(boton => {
   boton.addEventListener("click", () => {
     const valorBoton = boton.textContent;
@@ -111,3 +121,15 @@ botones.forEach(boton => {
   });
 });
 
+//? Alerta function
+buttonInfo.addEventListener("click", () => {
+  alerta()
+});
+
+const alerta = () => {
+  Swal.fire({
+    icon: 'info',
+    title: 'Atajos Rapidos',
+    html: '<p>Limpiar = Tecla Esc = Limpiar Numeros</p> <br/> <p>CH = Tecla C = Limpiar Historial</p> <br> <p>← = Tecla Retroceso = Borrar numero</p> <br> <p>Abrir menu de atajos = Tecla i</p>'
+  })
+}
