@@ -35,24 +35,6 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
-botones.forEach(boton => {
-  boton.addEventListener("click", () => {
-    const valorBoton = boton.textContent;
-    if (!isNaN(valorBoton)) {
-      handleNumericKey(valorBoton);
-    } else if (valorBoton === "+" || valorBoton === "-" || valorBoton === "*" || valorBoton === "/") {
-      handleOperatorKey(valorBoton);
-    } else if (valorBoton === "=") {
-      handleEqualKey();
-    } else if (valorBoton === "←") {
-      handleBackspaceKey();
-    } else if (valorBoton === "C") {
-      handleCkey();
-    } else if (valorBoton === "Espace") {
-      handleClearKey();
-    }
-  });
-});
 
 function actualizarHistorial() {
   const historialElemento = document.querySelector(".historial");
@@ -106,9 +88,26 @@ function handleCkey() {
 }
 
 function handleClearKey() {
-  historial = [];
-  actualizarHistorial();
   pantalla.textContent = "0";
 
 }
+
+botones.forEach(boton => {
+  boton.addEventListener("click", () => {
+    const valorBoton = boton.textContent;
+    if (!isNaN(valorBoton)) {
+      handleNumericKey(valorBoton);
+    } else if (valorBoton === "+" || valorBoton === "-" || valorBoton === "*" || valorBoton === "/") {
+      handleOperatorKey(valorBoton);
+    } else if (valorBoton === "=") {
+      handleEqualKey();
+    } else if (valorBoton === "←") {
+      handleBackspaceKey();
+    } else if (valorBoton === "C") {
+      handleCkey();
+    } else if (valorBoton === "Escape") {
+      handleClearKey();
+    }
+  });
+});
 
