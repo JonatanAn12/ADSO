@@ -35,6 +35,25 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
+botones.forEach(boton => {
+  boton.addEventListener("click", () => {
+    const valorBoton = boton.textContent;
+    if (!isNaN(valorBoton)) {
+      handleNumericKey(valorBoton);
+    } else if (valorBoton === "+" || valorBoton === "-" || valorBoton === "*" || valorBoton === "/") {
+      handleOperatorKey(valorBoton);
+    } else if (valorBoton === "=") {
+      handleEqualKey();
+    } else if (valorBoton === "←") {
+      handleBackspaceKey();
+    } else if (valorBoton === "C") {
+      handleCkey();
+    } else if (valorBoton === "0") {
+      handleClearKey();
+    }
+  });
+});
+
 function actualizarHistorial() {
   const historialElemento = document.querySelector(".historial");
   historialElemento.innerHTML = "";
@@ -87,32 +106,9 @@ function handleCkey() {
 }
 
 function handleClearKey() {
+  historial = [];
+  actualizarHistorial();
   pantalla.textContent = "0";
+
 }
 
-function appendToDisplay(value) {
-  document.getElementById('display').value += value;
-}
-
-function clearDisplay() {
-  document.getElementById('display').value = '';
-}
-
-botones.forEach(boton => {
-  boton.addEventListener("click", () => {
-    const valorBoton = boton.textContent;
-    if (!isNaN(valorBoton)) {
-      handleNumericKey(valorBoton);
-    } else if (valorBoton === "+" || valorBoton === "-" || valorBoton === "*" || valorBoton === "/") {
-      handleOperatorKey(valorBoton);
-    } else if (valorBoton === "=") {
-      handleEqualKey();
-    } else if (valorBoton === "←") {
-      handleBackspaceKey();
-    } else if (valorBoton === "C") {
-      handleCkey();
-    } else if (valorBoton === "0") {
-      handleClearKey();
-    }
-  });
-});
