@@ -48,7 +48,7 @@ botones.forEach(boton => {
       handleBackspaceKey();
     } else if (valorBoton === "C") {
       handleCkey();
-    } else if (valorBoton === "0") {
+    } else if (valorBoton === "Espace") {
       handleClearKey();
     }
   });
